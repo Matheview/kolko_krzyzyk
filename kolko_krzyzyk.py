@@ -120,7 +120,7 @@ class Plansza(object):
     def wyswietl_wynik(self):
         if wygrana(self.znaczniki, True):
             if self.poziom[1] == 'średni':
-                self.runda[1] += 1
+                self.runda[1] = randint(2, 6)
             wynik = 'Wygrana'
             color = kol_zielony
         elif wygrana(self.znaczniki, False):
