@@ -8,9 +8,9 @@ win = False
 
 
 def rysuj_plansze():
-    print("\n\t", plansza[0], "|", plansza[1], "|", plansza[2],
-          "\n\t", plansza[3], "|", plansza[4], "|", plansza[5],
-          "\n\t", plansza[6], "|", plansza[7], "|", plansza[8], "\n")
+    print('', plansza[0], "|", plansza[1], "|", plansza[2], "\n",
+          plansza[3], "|", plansza[4], "|", plansza[5], "\n",
+          plansza[6], "|", plansza[7], "|", plansza[8], "\n")
 
 
 def check_plansza():
@@ -33,7 +33,7 @@ def ruch_gracza():
 
 
 def ruch_komutera():
-    print("Ruch znaczniki[1]utera")
+    print("Ruch komputera")
     rysuj_plansze()
     set = False
     if check_plansza():
@@ -107,7 +107,7 @@ def wygrana():
             if plansza[mozliwosc[0]] == plansza[mozliwosc[1]] == plansza[mozliwosc[2]]:
                 if plansza[mozliwosc[0]] == znaczniki[1]:
                     win = True
-                    print("WYGRYWA znaczniki[1]UTERA")
+                    print("WYGRYWA KOMPUTERA")
                     rysuj_plansze()
                     sleep(5)
                     return True
