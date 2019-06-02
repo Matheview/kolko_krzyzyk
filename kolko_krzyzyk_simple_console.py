@@ -1,10 +1,11 @@
 from time import sleep
-from random import randint
+from random import randint, uniform
 
 gracz = 'X'
 komp = 'O'
 POLE = "-"
 plansza = [POLE] * 9
+wygrane = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 4, 8), (2, 4, 6), (0, 3, 6), (1, 4, 7), (2, 5, 8))
 win = False
 
 
@@ -38,6 +39,7 @@ def ruch_komputera():
     rysuj_plansze()
     set = False
     if check_plansza():
+        sleep(uniform(1.2, 4.2))
         if plansza[4] == POLE:
             plansza[4] = komp
             set = not set
@@ -96,7 +98,6 @@ def jak_grac():
 
 def wygrana():
     global win
-    RUCHY_ZWYCIESKIE = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 4, 8), (2, 4, 6), (0, 3, 6), (1, 4, 7), (2, 5, 8))
     if not check_plansza():
         win = True
         print("REMIS")
@@ -104,7 +105,7 @@ def wygrana():
         sleep(5)
         return True
     else:
-        for mozliwosc in RUCHY_ZWYCIESKIE:
+        for mozliwosc in wygrane:
             if plansza[mozliwosc[0]] == plansza[mozliwosc[1]] == plansza[mozliwosc[2]]:
                 if plansza[mozliwosc[0]] == komp:
                     win = True
