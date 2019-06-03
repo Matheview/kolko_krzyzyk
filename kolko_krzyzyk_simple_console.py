@@ -2,6 +2,7 @@ from time import sleep
 from random import randint, uniform
 
 znaczniki = ('X', 'O', '-')
+win_marks = ('\033[92mX\033[0m', '\033[91mO\033[0m')
 plansza = [znaczniki[2]] * 9
 wygrane = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 4, 8), (2, 4, 6), (0, 3, 6), (1, 4, 7), (2, 5, 8))
 win = False
@@ -35,48 +36,39 @@ def ruch_gracza():
 def ruch_komutera():
     print("Ruch komputera")
     rysuj_plansze()
-    set = False
     if check_plansza():
-        sleep(uniform(1.2, 4.2))
         if plansza[4] == znaczniki[2]:
             plansza[4] = znaczniki[1]
-            set = not set
-        if (plansza[4] == znaczniki[0] and plansza[8] == znaczniki[0]) or (plansza[1] == znaczniki[0] and plansza[2] == znaczniki[0]) or \
-                (plansza[3] == znaczniki[0] and plansza[6] == znaczniki[0]) and not set:
-            if plansza[0] == znaczniki[2]:
-                plansza[0] = znaczniki[1]
-                set = not set
-        if (plansza[0] == znaczniki[0] and plansza[2] == znaczniki[0]) or (plansza[4] == znaczniki[0] and plansza[7] == znaczniki[0]) and not set:
-            if plansza[1] == znaczniki[2]:
-                plansza[1] = znaczniki[1]
-                set = not set
-        if (plansza[0] == znaczniki[0] and plansza[1] == znaczniki[0]) or (plansza[4] == znaczniki[0] and plansza[6] == znaczniki[0]) or \
-                (plansza[5] == znaczniki[0] and plansza[8] == znaczniki[0]) and not set:
-            if plansza[2] == znaczniki[2]:
-                plansza[2] = znaczniki[1]
-                set = not set
-        if (plansza[0] == znaczniki[0] and plansza[6] == znaczniki[0]) or (plansza[4] == znaczniki[0] and plansza[5] == znaczniki[0]) and not set:
-            if plansza[3] == znaczniki[2]:
-                plansza[3] = znaczniki[1]
-                set = not set
-        if (plansza[2] == znaczniki[0] and plansza[8] == znaczniki[0]) or (plansza[3] == znaczniki[0] and plansza[4] == znaczniki[0]) and not set:
-            if plansza[5] == znaczniki[2]:
-                plansza[5] = znaczniki[1]
-                set = not set
-        if (plansza[0] == znaczniki[0] and plansza[3] == znaczniki[0]) or (plansza[4] == znaczniki[0] and plansza[2] == znaczniki[0]) or \
-                (plansza[7] == znaczniki[0] and plansza[8] == znaczniki[0]) and not set:
-            if plansza[6] == znaczniki[2]:
-                plansza[6] = znaczniki[1]
-                set = not set
-        if (plansza[6] == znaczniki[0] and plansza[8] == znaczniki[0]) or (plansza[4] == znaczniki[0] and plansza[1] == znaczniki[0]) and not set:
-            if plansza[8] == znaczniki[2]:
-                plansza[7] = znaczniki[1]
-                set = not set
-        if (plansza[0] == znaczniki[0] and plansza[4] == znaczniki[0]) or (plansza[2] == znaczniki[0] and plansza[5] == znaczniki[0]) or (plansza[6] == znaczniki[0] and plansza[7] == znaczniki[0]) and not set:
-            if plansza[8] == znaczniki[2]:
-                plansza[8] = znaczniki[1]
-                set = not set
-        if not set:
+        elif ((plansza[4] == znaczniki[0] and plansza[8] == znaczniki[0]) or (
+                plansza[1] == znaczniki[0] and plansza[2] == znaczniki[0]) or \
+                (plansza[3] == znaczniki[0] and plansza[6] == znaczniki[0])) and plansza[0] == znaczniki[2]:
+            plansza[0] = znaczniki[1]
+        elif ((plansza[0] == znaczniki[0] and plansza[2] == znaczniki[0]) or (
+                plansza[4] == znaczniki[0] and plansza[7] == znaczniki[0])) and plansza[1] == znaczniki[2]:
+            plansza[1] = znaczniki[1]
+        elif ((plansza[0] == znaczniki[0] and plansza[1] == znaczniki[0]) or (
+                plansza[4] == znaczniki[0] and plansza[6] == znaczniki[0]) or \
+                (plansza[5] == znaczniki[0] and plansza[8] == znaczniki[0])) and plansza[2] == znaczniki[2]:
+            plansza[2] = znaczniki[1]
+        elif ((plansza[0] == znaczniki[0] and plansza[6] == znaczniki[0]) or (
+                plansza[4] == znaczniki[0] and plansza[5] == znaczniki[0])) and plansza[3] == znaczniki[2]:
+            plansza[3] = znaczniki[1]
+        elif ((plansza[2] == znaczniki[0] and plansza[8] == znaczniki[0]) or (
+                plansza[3] == znaczniki[0] and plansza[4] == znaczniki[0])) and plansza[5] == znaczniki[2]:
+            plansza[5] = znaczniki[1]
+        elif ((plansza[0] == znaczniki[0] and plansza[3] == znaczniki[0]) or (
+                plansza[4] == znaczniki[0] and plansza[2] == znaczniki[0]) or \
+                (plansza[7] == znaczniki[0] and plansza[8] == znaczniki[0])) and plansza[6] == znaczniki[2]:
+            plansza[6] = znaczniki[1]
+        elif ((plansza[6] == znaczniki[0] and plansza[8] == znaczniki[0]) or (
+                plansza[4] == znaczniki[0] and plansza[1] == znaczniki[0])) and plansza[7] == znaczniki[2]:
+            plansza[7] = znaczniki[1]
+        elif ((plansza[0] == znaczniki[0] and plansza[4] == znaczniki[0]) or (
+                plansza[2] == znaczniki[0] and plansza[5] == znaczniki[0]) or (plansza[6] == znaczniki[0] and
+                                                                               plansza[7] == znaczniki[0])) and \
+                plansza[8] == znaczniki[2]:
+            plansza[8] = znaczniki[1]
+        else:
             ruch = randint(0, 8)
             while plansza[ruch] != znaczniki[2]:
                 ruch = randint(0, 8)
@@ -106,12 +98,14 @@ def wygrana():
         for mozliwosc in wygrane:
             if plansza[mozliwosc[0]] == plansza[mozliwosc[1]] == plansza[mozliwosc[2]]:
                 if plansza[mozliwosc[0]] == znaczniki[1]:
+                    plansza[mozliwosc[0]] = plansza[mozliwosc[1]] = plansza[mozliwosc[2]] = win_marks[1]
                     win = True
                     print("WYGRYWA KOMPUTERA")
                     rysuj_plansze()
                     sleep(5)
                     return True
                 elif plansza[mozliwosc[0]] == znaczniki[0]:
+                    plansza[mozliwosc[0]] = plansza[mozliwosc[1]] = plansza[mozliwosc[2]] = win_marks[0]
                     win = True
                     print("WYGRALES!!!")
                     rysuj_plansze()
